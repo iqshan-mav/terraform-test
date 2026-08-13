@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.6.0"
+  required_version = ">= 1.10.0"
 
   required_providers {
     aws = {
@@ -8,7 +8,13 @@ terraform {
     }
   }
 
-  # Local state file (terraform.tfstate in this directory).
+  backend "s3" {
+    bucket       = "hrms-terraform-test-state-029006056735"
+    key          = "terraform-test/terraform.tfstate"
+    region       = "ap-southeast-1"
+    encrypt      = true
+    use_lockfile = true # native S3 locking (Terraform >= 1.10), no DynamoDB table needed
+  }
 }
 
 provider "aws" {
