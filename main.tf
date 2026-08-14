@@ -27,6 +27,7 @@ resource "aws_s3_bucket" "this" {
   tags = {
     Project   = "terraform-test"
     ManagedBy = "terraform"
+    Purpose   = "ci-test"
   }
 }
 
