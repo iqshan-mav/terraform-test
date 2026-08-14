@@ -18,7 +18,7 @@ permissions:
   pull-requests: write # required to post the plan as a PR comment
 
 concurrency:
-  group: terraform-test-${{ github.workflow }}
+  group: terraform-test-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: false
 
 env:

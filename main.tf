@@ -27,6 +27,7 @@ resource "aws_s3_bucket" "this" {
   tags = {
     Project   = "terraform-test"
     ManagedBy = "terraform"
+    Purpose   = "ci-test"
   }
 }
 
@@ -181,7 +182,7 @@ resource "aws_ecs_task_definition" "this" {
         "if [ -n \"$APP_SECRET\" ]; then echo 'APP_SECRET successfully injected'; else echo 'APP_SECRET NOT injected'; fi && nginx -g 'daemon off;'"
       ]
 
-      portMappings = [  
+      portMappings = [
         {
           containerPort = 80
           protocol      = "tcp"
